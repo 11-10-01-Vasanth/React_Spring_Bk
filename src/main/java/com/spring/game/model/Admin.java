@@ -12,37 +12,45 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "admin_game")
-
 public class Admin {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "gameid", updatable = false, nullable = false)
-	private UUID gameid;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "gameid", updatable = false, nullable = false)
+    private UUID gameid;
 
-	@Column(name = "gametitle")
-	private String gametitle;
+    @Column(name = "gametitle")
+    private String gametitle;
 
-	@Column(name = "gamedescription")
-	private String gamedescription;
+    @Column(name = "gamedescription")
+    private String gamedescription;
 
-	@Column(name = "gameprice")
-	private Double gameprice;
+    @Column(name = "gameprice")
+    private Double gameprice;
 
-	@Column(name = "gamediscount")
-	private Double gamediscount;
+    @Column(name = "gamediscount")
+    private Double gamediscount;
 
-	@Column(name = "gameimage")
-	private String gameimage;
+    @Column(name = "gameimage")
+    private String gameimage;
 
-	@Column(name = "gamecategory")
-	private String gamecategory;
+    @Column(name = "gameimage1")
+    private String gameimage1;
 
-	@Column(name = "createdAt")
-	private Date createdAt;
+    @Column(name = "gameimage2")
+    private String gameimage2;
 
-	@Column(name = "updatedAt")
-	private Date updatedAt;
+    @Column(name = "gameimage3")
+    private String gameimage3;
+
+    @Column(name = "gamecategory")
+    private String gamecategory;
+
+    @Column(name = "createdAt")
+    private Date createdAt;
+
+    @Column(name = "updatedAt")
+    private Date updatedAt;
 
 	public UUID getGameid() {
 		return gameid;
@@ -92,6 +100,30 @@ public class Admin {
 		this.gameimage = gameimage;
 	}
 
+	public String getGameimage1() {
+		return gameimage1;
+	}
+
+	public void setGameimage1(String gameimage1) {
+		this.gameimage1 = gameimage1;
+	}
+
+	public String getGameimage2() {
+		return gameimage2;
+	}
+
+	public void setGameimage2(String gameimage2) {
+		this.gameimage2 = gameimage2;
+	}
+
+	public String getGameimage3() {
+		return gameimage3;
+	}
+
+	public void setGameimage3(String gameimage3) {
+		this.gameimage3 = gameimage3;
+	}
+
 	public String getGamecategory() {
 		return gamecategory;
 	}
@@ -116,4 +148,8 @@ public class Admin {
 		this.updatedAt = updatedAt;
 	}
 
+    
+    
+    // Getters and Setters
+    // ... 
 }

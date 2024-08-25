@@ -19,4 +19,6 @@ public interface AdminRepo extends JpaRepository<Admin, UUID> {
 
 	@Query(value = "SELECT DISTINCT gamecategory FROM admin_game", nativeQuery = true)
 	List<String> findDistinctGameCategories();
+
+	List<Admin> findBygameid(UUID gameid);
 }
