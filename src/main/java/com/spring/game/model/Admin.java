@@ -1,14 +1,8 @@
 package com.spring.game.model;
 
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.UUID;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "admin_game")
@@ -22,7 +16,7 @@ public class Admin {
     @Column(name = "gametitle")
     private String gametitle;
 
-    @Column(name = "gamedescription")
+    @Column(name = "gamedescription", columnDefinition = "text")
     private String gamedescription;
 
     @Column(name = "gameprice")
@@ -52,104 +46,113 @@ public class Admin {
     @Column(name = "updatedAt")
     private Date updatedAt;
 
-	public UUID getGameid() {
-		return gameid;
-	}
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "trending_id", referencedColumnName = "id")
+    private Trending trending;
 
-	public void setGameid(UUID gameid) {
-		this.gameid = gameid;
-	}
-
-	public String getGametitle() {
-		return gametitle;
-	}
-
-	public void setGametitle(String gametitle) {
-		this.gametitle = gametitle;
-	}
-
-	public String getGamedescription() {
-		return gamedescription;
-	}
-
-	public void setGamedescription(String gamedescription) {
-		this.gamedescription = gamedescription;
-	}
-
-	public Double getGameprice() {
-		return gameprice;
-	}
-
-	public void setGameprice(Double gameprice) {
-		this.gameprice = gameprice;
-	}
-
-	public Double getGamediscount() {
-		return gamediscount;
-	}
-
-	public void setGamediscount(Double gamediscount) {
-		this.gamediscount = gamediscount;
-	}
-
-	public String getGameimage() {
-		return gameimage;
-	}
-
-	public void setGameimage(String gameimage) {
-		this.gameimage = gameimage;
-	}
-
-	public String getGameimage1() {
-		return gameimage1;
-	}
-
-	public void setGameimage1(String gameimage1) {
-		this.gameimage1 = gameimage1;
-	}
-
-	public String getGameimage2() {
-		return gameimage2;
-	}
-
-	public void setGameimage2(String gameimage2) {
-		this.gameimage2 = gameimage2;
-	}
-
-	public String getGameimage3() {
-		return gameimage3;
-	}
-
-	public void setGameimage3(String gameimage3) {
-		this.gameimage3 = gameimage3;
-	}
-
-	public String getGamecategory() {
-		return gamecategory;
-	}
-
-	public void setGamecategory(String gamecategory) {
-		this.gamecategory = gamecategory;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-    
-    
     // Getters and Setters
-    // ... 
+
+    public UUID getGameid() {
+        return gameid;
+    }
+
+    public void setGameid(UUID gameid) {
+        this.gameid = gameid;
+    }
+
+    public String getGametitle() {
+        return gametitle;
+    }
+
+    public void setGametitle(String gametitle) {
+        this.gametitle = gametitle;
+    }
+
+    public String getGamedescription() {
+        return gamedescription;
+    }
+
+    public void setGamedescription(String gamedescription) {
+        this.gamedescription = gamedescription;
+    }
+
+    public Double getGameprice() {
+        return gameprice;
+    }
+
+    public void setGameprice(Double gameprice) {
+        this.gameprice = gameprice;
+    }
+
+    public Double getGamediscount() {
+        return gamediscount;
+    }
+
+    public void setGamediscount(Double gamediscount) {
+        this.gamediscount = gamediscount;
+    }
+
+    public String getGameimage() {
+        return gameimage;
+    }
+
+    public void setGameimage(String gameimage) {
+        this.gameimage = gameimage;
+    }
+
+    public String getGameimage1() {
+        return gameimage1;
+    }
+
+    public void setGameimage1(String gameimage1) {
+        this.gameimage1 = gameimage1;
+    }
+
+    public String getGameimage2() {
+        return gameimage2;
+    }
+
+    public void setGameimage2(String gameimage2) {
+        this.gameimage2 = gameimage2;
+    }
+
+    public String getGameimage3() {
+        return gameimage3;
+    }
+
+    public void setGameimage3(String gameimage3) {
+        this.gameimage3 = gameimage3;
+    }
+
+    public String getGamecategory() {
+        return gamecategory;
+    }
+
+    public void setGamecategory(String gamecategory) {
+        this.gamecategory = gamecategory;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Trending getTrending() {
+        return trending;
+    }
+
+    public void setTrending(Trending trending) {
+        this.trending = trending;
+    }
 }

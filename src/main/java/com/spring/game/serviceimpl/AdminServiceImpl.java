@@ -38,8 +38,8 @@ public class AdminServiceImpl implements AdminService {
 		try {
 			byte[] bytes = gameimage.getBytes();
 			UUID uuid = UUID.randomUUID();
-//            String uploadsLocation = "/home/kernelogy/Vasanth/React_Spring_bk/src/main/resources/resources/uploads/";
-			String uploadsLocation = "D:/SpringWorkspace/Game_World/src/main/resources/resources/uploads/";
+           String uploadsLocation = "/home/kernelogy/Vasanth/React_Spring_Bk/src/main/resources/resources/uploads/";
+			// String uploadsLocation = "D:/SpringWorkspace/Game_World/src/main/resources/resources/uploads/";
 			String imageUrl = uuid + "_" + gameimage.getOriginalFilename();
 			String fileLocation = uploadsLocation + imageUrl;
 			Path path = Paths.get(fileLocation);
@@ -156,7 +156,8 @@ public class AdminServiceImpl implements AdminService {
 
 	private String saveFile(MultipartFile file, String type) throws IOException {
 	    UUID uuid = UUID.randomUUID();
-	    String uploadsLocation = "D:/SpringWorkspace/Game_World/src/main/resources/resources/uploads/";
+	    // String uploadsLocation = "D:/SpringWorkspace/Game_World/src/main/resources/resources/uploads/";
+		String uploadsLocation = "/home/kernelogy/Vasanth/React_Spring_Bk/src/main/resources/resources/uploads/";
 	    String fileName = uuid + "_" + file.getOriginalFilename();
 	    String fileLocation = uploadsLocation + fileName;
 	    Path path = Paths.get(fileLocation);
