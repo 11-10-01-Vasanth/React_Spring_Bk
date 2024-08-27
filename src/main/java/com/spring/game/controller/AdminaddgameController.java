@@ -42,37 +42,37 @@ public class AdminaddgameController {
 	}
 
 	@PutMapping("/updategames/{gameid}")
-public ResponseEntity<?> updategames(
-        @PathVariable UUID gameid,
-        @RequestParam("gametitle") String gametitle,
-        @RequestParam("gamecategory") String gamecategory,
-        @RequestParam("gamedescription") String gamedescription,
-        @RequestParam("gameprice") Double gameprice,
-        @RequestParam("gamediscount") Double gamediscount,
-        @RequestParam(value = "gameimage", required = false) MultipartFile gameimage,
-        @RequestParam(value = "video1Url", required = false) MultipartFile video1Url,
-        @RequestParam(value = "video2Url", required = false) MultipartFile video2Url,
-        @RequestParam(value = "video3Url", required = false) MultipartFile video3Url,
-        @RequestParam(value = "video4Url", required = false) MultipartFile video4Url) {
+	public ResponseEntity<?> updategames(
+			@PathVariable UUID gameid,
+			@RequestParam("gametitle") String gametitle,
+			@RequestParam("gamecategory") String gamecategory,
+			@RequestParam("gamedescription") String gamedescription,
+			@RequestParam("gameprice") Double gameprice,
+			@RequestParam("gamediscount") Double gamediscount,
+			@RequestParam(value = "gameimage", required = false) MultipartFile gameimage,
+			@RequestParam(value = "video1Url", required = false) MultipartFile video1Url,
+			@RequestParam(value = "video2Url", required = false) MultipartFile video2Url,
+			@RequestParam(value = "video3Url", required = false) MultipartFile video3Url,
+			@RequestParam(value = "video4Url", required = false) MultipartFile video4Url) {
 
-    // Create an Admin object with the updated information
-    Admin updatedAdmin = new Admin();
-    updatedAdmin.setGametitle(gametitle);
-    updatedAdmin.setGamecategory(gamecategory);
-    updatedAdmin.setGamedescription(gamedescription);
-    updatedAdmin.setGameprice(gameprice);
-    updatedAdmin.setGamediscount(gamediscount);
+		// Create an Admin object with the updated information
+		Admin updatedAdmin = new Admin();
+		updatedAdmin.setGametitle(gametitle);
+		updatedAdmin.setGamecategory(gamecategory);
+		updatedAdmin.setGamedescription(gamedescription);
+		updatedAdmin.setGameprice(gameprice);
+		updatedAdmin.setGamediscount(gamediscount);
 
-    // Call the service method to handle the update
-    try {
-        ResponseEntity<?> response = adminService.updategames(gameid, updatedAdmin, gameimage, video1Url, video2Url, video3Url, video4Url);
-        return response;
-    } catch (IOException e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Error occurred while updating game: " + e.getMessage());
-    }
-}
-
+		// Call the service method to handle the update
+		try {
+			ResponseEntity<?> response = adminService.updategames(gameid, updatedAdmin, gameimage, video1Url, video2Url,
+					video3Url, video4Url);
+			return response;
+		} catch (IOException e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Error occurred while updating game: " + e.getMessage());
+		}
+	}
 
 	@GetMapping("/getAll/{page}/{size}")
 	public ResponseEntity<?> getAllGames(@PathVariable int page, @PathVariable int size) {
