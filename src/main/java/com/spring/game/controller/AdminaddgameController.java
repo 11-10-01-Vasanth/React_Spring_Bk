@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.spring.game.model.Admin;
 import com.spring.game.service.AdminService;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,16 +41,38 @@ public class AdminaddgameController {
 		return ResponseEntity.status(HttpStatus.OK).body(savedEntity);
 	}
 
-	@PostMapping("/updategames/{gameid}")
-	public ResponseEntity<?> updategames(@PathVariable UUID gameid, @RequestBody Admin admin,
-			@RequestParam("gameimage") MultipartFile gameimage, @RequestParam("gameimage1") MultipartFile gameimage1,
-			@RequestParam("gameimage2") MultipartFile gameimage2,
-			@RequestParam("gameimage3") MultipartFile gameimage3) {
+	@PutMapping("/updategames/{gameid}")
+public ResponseEntity<?> updategames(
+        @PathVariable UUID gameid,
+        @RequestParam("gametitle") String gametitle,
+        @RequestParam("gamecategory") String gamecategory,
+        @RequestParam("gamedescription") String gamedescription,
+        @RequestParam("gameprice") Double gameprice,
+        @RequestParam("gamediscount") Double gamediscount,
+        @RequestParam(value = "gameimage", required = false) MultipartFile gameimage,
+        @RequestParam(value = "video1Url", required = false) MultipartFile video1Url,
+        @RequestParam(value = "video2Url", required = false) MultipartFile video2Url,
+        @RequestParam(value = "video3Url", required = false) MultipartFile video3Url,
+        @RequestParam(value = "video4Url", required = false) MultipartFile video4Url) {
 
-		ResponseEntity<?> savedEntity = adminService.updategames(gameid, admin, gameimage, gameimage1, gameimage2,
-				gameimage3);
-		return ResponseEntity.status(HttpStatus.OK).body(savedEntity);
-	}
+    // Create an Admin object with the updated information
+    Admin updatedAdmin = new Admin();
+    updatedAdmin.setGametitle(gametitle);
+    updatedAdmin.setGamecategory(gamecategory);
+    updatedAdmin.setGamedescription(gamedescription);
+    updatedAdmin.setGameprice(gameprice);
+    updatedAdmin.setGamediscount(gamediscount);
+
+    // Call the service method to handle the update
+    try {
+        ResponseEntity<?> response = adminService.updategames(gameid, updatedAdmin, gameimage, video1Url, video2Url, video3Url, video4Url);
+        return response;
+    } catch (IOException e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Error occurred while updating game: " + e.getMessage());
+    }
+}
+
 
 	@GetMapping("/getAll/{page}/{size}")
 	public ResponseEntity<?> getAllGames(@PathVariable int page, @PathVariable int size) {

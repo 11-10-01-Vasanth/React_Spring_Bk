@@ -1,5 +1,6 @@
 package com.spring.game.serviceimpl;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,12 +20,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.game.model.Admin;
+import com.spring.game.model.Trending;
 import com.spring.game.repo.AdminRepo;
 import com.spring.game.service.AdminService;
 
 @Service
 public class AdminServiceImpl implements AdminService {
 
+	private static final String uploadDir = null;
 	@Autowired
 	private AdminRepo adminRepo;
 
@@ -38,8 +41,9 @@ public class AdminServiceImpl implements AdminService {
 		try {
 			byte[] bytes = gameimage.getBytes();
 			UUID uuid = UUID.randomUUID();
-           String uploadsLocation = "/home/kernelogy/Vasanth/React_Spring_Bk/src/main/resources/resources/uploads/";
-			// String uploadsLocation = "D:/SpringWorkspace/Game_World/src/main/resources/resources/uploads/";
+			String uploadsLocation = "/home/kernelogy/Vasanth/React_Spring_Bk/src/main/resources/resources/uploads/";
+			// String uploadsLocation =
+			// "D:/SpringWorkspace/Game_World/src/main/resources/resources/uploads/";
 			String imageUrl = uuid + "_" + gameimage.getOriginalFilename();
 			String fileLocation = uploadsLocation + imageUrl;
 			Path path = Paths.get(fileLocation);
@@ -104,73 +108,78 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<Admin> getAllGameCategory(UUID gameid) {
-		// TODO Auto-generated method stub
 		return adminRepo.findBygameid(gameid);
 	}
 
 	@Override
-	public ResponseEntity<?> updategames(UUID gameid, Admin updatedAdmin, MultipartFile gameimage,MultipartFile gameimage1, MultipartFile gameimage2, MultipartFile gameimage3) {
-	    try {
-	        Optional<Admin> existingGameOpt = adminRepo.findById(gameid);
-	        if (!existingGameOpt.isPresent()) {
-	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Game not found with ID: " + gameid);
-	        }
+public ResponseEntity<?> updategames(UUID gameid, Admin updatedAdmin, MultipartFile gameimage, MultipartFile video1Url, MultipartFile video2Url, MultipartFile video3Url, MultipartFile video4Url) {
+    try {
+        Optional<Admin> existingGameOpt = adminRepo.findById(gameid);
+        if (!existingGameOpt.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Game not found with ID: " + gameid);
+        }
 
-	        Admin entity = existingGameOpt.get();
-	        entity.setGametitle(updatedAdmin.getGametitle());
-	        entity.setGamedescription(updatedAdmin.getGamedescription());
-	        entity.setGamediscount(updatedAdmin.getGamediscount());
-	        entity.setGameprice(updatedAdmin.getGameprice());
-	        entity.setGamecategory(updatedAdmin.getGamecategory());
+        Admin entity = existingGameOpt.get();
+        entity.setGametitle(updatedAdmin.getGametitle());
+        entity.setGamedescription(updatedAdmin.getGamedescription());
+        entity.setGamediscount(updatedAdmin.getGamediscount());
+        entity.setGameprice(updatedAdmin.getGameprice());
+        entity.setGamecategory(updatedAdmin.getGamecategory());
 
-	        // Update the main game image
-	        if (updatedAdmin.getGameimage() != null && !updatedAdmin.getGameimage().isEmpty()) {
-	            entity.setGameimage(updatedAdmin.getGameimage());
-	        }
+        // Update the game image
+        if (gameimage != null && !gameimage.isEmpty()) {
+            String imageUrl = saveFile(gameimage);
+            entity.setGameimage(imageUrl);
+        }
 
-	        // Update additional game images
-	        if (gameimage1 != null && !gameimage1.isEmpty()) {
-	            String imageUrl1 = saveFile(gameimage1, "image1");
-	            entity.setGameimage1(imageUrl1);
-	        }
+        // Update the Trending entity
+        Trending trending = entity.getTrending();
+        if (trending == null) {
+            trending = new Trending();
+            entity.setTrending(trending);
+        }
 
-	        if (gameimage2 != null && !gameimage2.isEmpty()) {
-	            String imageUrl2 = saveFile(gameimage2, "image2");
-	            entity.setGameimage2(imageUrl2);
-	        }
+        if (video1Url != null && !video1Url.isEmpty()) {
+            String video1Path = saveFile(video1Url);
+            trending.setVideo1Url(video1Path);
+        }
+        if (video2Url != null && !video2Url.isEmpty()) {
+            String video2Path = saveFile(video2Url);
+            trending.setVideo2Url(video2Path);
+        }
+        if (video3Url != null && !video3Url.isEmpty()) {
+            String video3Path = saveFile(video3Url);
+            trending.setVideo3Url(video3Path);
+        }
+        if (video4Url != null && !video4Url.isEmpty()) {
+            String video4Path = saveFile(video4Url);
+            trending.setVideo4Url(video4Path);
+        }
 
-	        if (gameimage3 != null && !gameimage3.isEmpty()) {
-	            String imageUrl3 = saveFile(gameimage3, "image3");
-	            entity.setGameimage3(imageUrl3);
-	        }
+        entity.setUpdatedAt(new Date(System.currentTimeMillis()));
 
-	        entity.setUpdatedAt(new Date());  // Update the timestamp
+        adminRepo.save(entity);
 
-	        adminRepo.save(entity);
+        return ResponseEntity.ok("Game updated successfully.");
+    } catch (IOException e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Error occurred while updating game: " + e.getMessage());
+    }
+}
 
-	        return ResponseEntity.ok("Game updated successfully.");
-	    } catch (IOException e) {
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-	    }
-	}
+private String saveFile(MultipartFile file) throws IOException {
+    UUID uuid = UUID.randomUUID();
+    String uploadsLocation = "/home/kernelogy/Vasanth/React_Spring_Bk/src/main/resources/resources/uploads/";
+    String fileName = uuid + "_" + file.getOriginalFilename();
+    Path path = Paths.get(uploadsLocation + fileName);
 
-	private String saveFile(MultipartFile file, String type) throws IOException {
-	    UUID uuid = UUID.randomUUID();
-	    // String uploadsLocation = "D:/SpringWorkspace/Game_World/src/main/resources/resources/uploads/";
-		String uploadsLocation = "/home/kernelogy/Vasanth/React_Spring_Bk/src/main/resources/resources/uploads/";
-	    String fileName = uuid + "_" + file.getOriginalFilename();
-	    String fileLocation = uploadsLocation + fileName;
-	    Path path = Paths.get(fileLocation);
+    if (!Files.exists(path.getParent())) {
+        Files.createDirectories(path.getParent());
+    }
 
-	    // Ensure the directory exists
-	    if (!Files.exists(path.getParent())) {
-	        Files.createDirectories(path.getParent());
-	    }
-
-	    Files.write(path, file.getBytes());
-
-	    return fileName;
-	}
+    Files.write(path, file.getBytes());
+    return fileName;
+}
 
 
 }

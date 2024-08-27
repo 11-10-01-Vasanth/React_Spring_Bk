@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "admin_game")
 public class Admin {
@@ -28,15 +30,6 @@ public class Admin {
     @Column(name = "gameimage")
     private String gameimage;
 
-    @Column(name = "gameimage1")
-    private String gameimage1;
-
-    @Column(name = "gameimage2")
-    private String gameimage2;
-
-    @Column(name = "gameimage3")
-    private String gameimage3;
-
     @Column(name = "gamecategory")
     private String gamecategory;
 
@@ -48,6 +41,7 @@ public class Admin {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "trending_id", referencedColumnName = "id")
+    @JsonManagedReference
     private Trending trending;
 
     // Getters and Setters
@@ -98,30 +92,6 @@ public class Admin {
 
     public void setGameimage(String gameimage) {
         this.gameimage = gameimage;
-    }
-
-    public String getGameimage1() {
-        return gameimage1;
-    }
-
-    public void setGameimage1(String gameimage1) {
-        this.gameimage1 = gameimage1;
-    }
-
-    public String getGameimage2() {
-        return gameimage2;
-    }
-
-    public void setGameimage2(String gameimage2) {
-        this.gameimage2 = gameimage2;
-    }
-
-    public String getGameimage3() {
-        return gameimage3;
-    }
-
-    public void setGameimage3(String gameimage3) {
-        this.gameimage3 = gameimage3;
     }
 
     public String getGamecategory() {

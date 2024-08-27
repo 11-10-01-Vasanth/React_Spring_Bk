@@ -1,5 +1,6 @@
 package com.spring.game.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,7 +26,6 @@ public interface AdminService {
 
 	List<Admin> getAllGameCategory(UUID gameid);
 
-	ResponseEntity<?> updategames(UUID gameid, Admin admin, MultipartFile gameimage, MultipartFile gameimage1,
-			MultipartFile gameimage2, MultipartFile gameimage3);
+	ResponseEntity<?> updategames(UUID gameid, Admin admin, MultipartFile gameimage, MultipartFile video1Url, MultipartFile video2Url, MultipartFile video3Url, MultipartFile video4Url) throws IOException;
 
 }

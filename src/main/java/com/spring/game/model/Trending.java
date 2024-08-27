@@ -1,5 +1,7 @@
 package com.spring.game.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -23,6 +25,7 @@ public class Trending {
     private String video4Url;
 
     @OneToOne(mappedBy = "trending")
+    @JsonBackReference
     private Admin admin;
 
     // Getters and Setters
