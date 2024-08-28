@@ -32,8 +32,8 @@ public class AdminServiceImpl implements AdminService {
 	private AdminRepo adminRepo;
 
 	@Override
-	public ResponseEntity<String> addgames(String gametitle, String gamedescription, Double gameprice,
-			Double gamediscount, String gamecategory, MultipartFile gameimage) {
+	public ResponseEntity<String> addgames(String gametitle, String gamedescription, Double gameprice, Double gamediscount,
+	String gamecategory, String gamerating, Date releasedate, String gamepublisher, String gameplatforms, String minsystemrequirements, String recsystemrequirements, String gamegenres, String gametrailerurl, String agerating, String gamefeatures, String supportedlanguages, String gameachievements, String communitylinks, MultipartFile gameimage) {
 		if (gameimage.isEmpty()) {
 			return new ResponseEntity<>("Please select a file!", HttpStatus.OK);
 		}
@@ -61,6 +61,19 @@ public class AdminServiceImpl implements AdminService {
 			game.setGameprice(gameprice);
 			game.setGamediscount(gamediscount);
 			game.setGamecategory(gamecategory);
+			game.setAgerating(agerating);
+			game.setReleasedate(releasedate);
+			game.setGamepublisher(gamepublisher);
+			game.setGameplatforms(gameplatforms);
+			game.setMinsystemrequirements(minsystemrequirements);
+			game.setRecsystemrequirements(recsystemrequirements);
+			game.setGamegenres(gamegenres);
+			game.setGamerating(gamerating);
+			game.setGametrailerurl(gametrailerurl);
+			game.setGamefeatures(gamefeatures);
+			game.setSupportedlanguages(supportedlanguages);
+			game.setGameachievements(gameachievements);
+			game.setCommunitylinks(communitylinks);
 			game.setGameimage(imageUrl);
 			game.setCreatedAt(new Date(System.currentTimeMillis()));
 
@@ -112,74 +125,87 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-public ResponseEntity<?> updategames(UUID gameid, Admin updatedAdmin, MultipartFile gameimage, MultipartFile video1Url, MultipartFile video2Url, MultipartFile video3Url, MultipartFile video4Url) {
-    try {
-        Optional<Admin> existingGameOpt = adminRepo.findById(gameid);
-        if (!existingGameOpt.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Game not found with ID: " + gameid);
-        }
+	public ResponseEntity<?> updategames(UUID gameid, Admin updatedAdmin, MultipartFile gameimage,
+			MultipartFile video1Url, MultipartFile video2Url, MultipartFile video3Url, MultipartFile video4Url) {
+		try {
+			Optional<Admin> existingGameOpt = adminRepo.findById(gameid);
+			if (!existingGameOpt.isPresent()) {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Game not found with ID: " + gameid);
+			}
 
-        Admin entity = existingGameOpt.get();
-        entity.setGametitle(updatedAdmin.getGametitle());
-        entity.setGamedescription(updatedAdmin.getGamedescription());
-        entity.setGamediscount(updatedAdmin.getGamediscount());
-        entity.setGameprice(updatedAdmin.getGameprice());
-        entity.setGamecategory(updatedAdmin.getGamecategory());
+			Admin entity = existingGameOpt.get();
+			entity.setGametitle(updatedAdmin.getGametitle());
+			entity.setGamedescription(updatedAdmin.getGamedescription());
+			entity.setGamediscount(updatedAdmin.getGamediscount());
+			entity.setGameprice(updatedAdmin.getGameprice());
+			entity.setGamecategory(updatedAdmin.getGamecategory());
+			entity.setAgerating(updatedAdmin.getAgerating());
+			entity.setReleasedate(updatedAdmin.getReleasedate());
+			entity.setGamepublisher(updatedAdmin.getGamepublisher());
+			entity.setGameplatforms(updatedAdmin.getGameplatforms());
+			entity.setMinsystemrequirements(updatedAdmin.getMinsystemrequirements());
+			entity.setRecsystemrequirements(updatedAdmin.getRecsystemrequirements());
+			entity.setGamegenres(updatedAdmin.getGamegenres());
+			entity.setGamerating(updatedAdmin.getGamerating());
+			entity.setGametrailerurl(updatedAdmin.getGametrailerurl());
+			entity.setGamefeatures(updatedAdmin.getGamefeatures());
+			entity.setSupportedlanguages(updatedAdmin.getAgerating());
+			entity.setGameachievements(updatedAdmin.getGameachievements());
+			entity.setCommunitylinks(updatedAdmin.getCommunitylinks());
 
-        // Update the game image
-        if (gameimage != null && !gameimage.isEmpty()) {
-            String imageUrl = saveFile(gameimage);
-            entity.setGameimage(imageUrl);
-        }
+			// Update the game image
+			if (gameimage != null && !gameimage.isEmpty()) {
+				String imageUrl = saveFile(gameimage);
+				entity.setGameimage(imageUrl);
+			}
 
-        // Update the Trending entity
-        Trending trending = entity.getTrending();
-        if (trending == null) {
-            trending = new Trending();
-            entity.setTrending(trending);
-        }
+			// Update the Trending entity
+			Trending trending = entity.getTrending();
+			if (trending == null) {
+				trending = new Trending();
+				entity.setTrending(trending);
+			}
 
-        if (video1Url != null && !video1Url.isEmpty()) {
-            String video1Path = saveFile(video1Url);
-            trending.setVideo1Url(video1Path);
-        }
-        if (video2Url != null && !video2Url.isEmpty()) {
-            String video2Path = saveFile(video2Url);
-            trending.setVideo2Url(video2Path);
-        }
-        if (video3Url != null && !video3Url.isEmpty()) {
-            String video3Path = saveFile(video3Url);
-            trending.setVideo3Url(video3Path);
-        }
-        if (video4Url != null && !video4Url.isEmpty()) {
-            String video4Path = saveFile(video4Url);
-            trending.setVideo4Url(video4Path);
-        }
+			if (video1Url != null && !video1Url.isEmpty()) {
+				String video1Path = saveFile(video1Url);
+				trending.setVideo1Url(video1Path);
+			}
+			if (video2Url != null && !video2Url.isEmpty()) {
+				String video2Path = saveFile(video2Url);
+				trending.setVideo2Url(video2Path);
+			}
+			if (video3Url != null && !video3Url.isEmpty()) {
+				String video3Path = saveFile(video3Url);
+				trending.setVideo3Url(video3Path);
+			}
+			if (video4Url != null && !video4Url.isEmpty()) {
+				String video4Path = saveFile(video4Url);
+				trending.setVideo4Url(video4Path);
+			}
 
-        entity.setUpdatedAt(new Date(System.currentTimeMillis()));
+			entity.setUpdatedAt(new Date(System.currentTimeMillis()));
 
-        adminRepo.save(entity);
+			adminRepo.save(entity);
 
-        return ResponseEntity.ok("Game updated successfully.");
-    } catch (IOException e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Error occurred while updating game: " + e.getMessage());
-    }
-}
+			return ResponseEntity.ok("Game updated successfully.");
+		} catch (IOException e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Error occurred while updating game: " + e.getMessage());
+		}
+	}
 
-private String saveFile(MultipartFile file) throws IOException {
-    UUID uuid = UUID.randomUUID();
-    String uploadsLocation = "/home/kernelogy/Vasanth/React_Spring_Bk/src/main/resources/resources/uploads/";
-    String fileName = uuid + "_" + file.getOriginalFilename();
-    Path path = Paths.get(uploadsLocation + fileName);
+	private String saveFile(MultipartFile file) throws IOException {
+		UUID uuid = UUID.randomUUID();
+		String uploadsLocation = "/home/kernelogy/Vasanth/React_Spring_Bk/src/main/resources/resources/uploads/";
+		String fileName = uuid + "_" + file.getOriginalFilename();
+		Path path = Paths.get(uploadsLocation + fileName);
 
-    if (!Files.exists(path.getParent())) {
-        Files.createDirectories(path.getParent());
-    }
+		if (!Files.exists(path.getParent())) {
+			Files.createDirectories(path.getParent());
+		}
 
-    Files.write(path, file.getBytes());
-    return fileName;
-}
-
+		Files.write(path, file.getBytes());
+		return fileName;
+	}
 
 }

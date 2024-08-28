@@ -1,6 +1,7 @@
 package com.spring.game.service;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,7 +13,7 @@ import com.spring.game.model.Admin;
 public interface AdminService {
 
 	ResponseEntity<String> addgames(String gametitle, String gamedescription, Double gameprice, Double gamediscount,
-			String gamecategory, MultipartFile gameimage);
+			String gamecategory, String gamerating, Date releasedate, String gamepublisher, String gameplatforms, String minsystemrequirements, String recsystemrequirements, String gamegenres, String gametrailerurl, String agerating, String gamefeatures, String supportedlanguages, String gameachievements, String communitylinks, MultipartFile gameimage);
 
 	ResponseEntity<?> getAllGames(int page, int size);
 

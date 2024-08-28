@@ -11,8 +11,10 @@ import com.spring.game.service.AdminService;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,9 +37,21 @@ public class AdminaddgameController {
 	public ResponseEntity<ResponseEntity<String>> addGames(@RequestParam("gametitle") String gametitle,
 			@RequestParam("gamedescription") String gamedescription, @RequestParam("gameprice") Double gameprice,
 			@RequestParam("gamediscount") Double gamediscount, @RequestParam("gamecategory") String gamecategory,
-			@RequestParam("gameimage") MultipartFile gameimage) {
+			@RequestParam("gamerating") String gamerating,
+			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date releasedate,
+			@RequestParam("gamepublisher") String gamepublisher, @RequestParam("gameplatforms") String gameplatforms,
+			@RequestParam("minsystemrequirements") String minsystemrequirements,
+			@RequestParam("recsystemrequirements") String recsystemrequirements,
+			@RequestParam("gamegenres") String gamegenres, @RequestParam("gametrailerurl") String gametrailerurl,
+			@RequestParam("agerating") String agerating, @RequestParam("gamefeatures") String gamefeatures,
+			@RequestParam("supportedlanguages") String supportedlanguages,
+			@RequestParam("gameachievements") String gameachievements,
+			@RequestParam("communitylinks") String communitylinks, @RequestParam("gameimage") MultipartFile gameimage) {
 		ResponseEntity<String> savedEntity = adminService.addgames(gametitle, gamedescription, gameprice, gamediscount,
-				gamecategory, gameimage);
+				gamecategory, gamerating, releasedate, gamepublisher, gameplatforms, minsystemrequirements,
+				recsystemrequirements, gamegenres,
+				gametrailerurl, agerating, gamefeatures, supportedlanguages, gameachievements, communitylinks,
+				gameimage);
 		return ResponseEntity.status(HttpStatus.OK).body(savedEntity);
 	}
 
@@ -49,6 +63,16 @@ public class AdminaddgameController {
 			@RequestParam("gamedescription") String gamedescription,
 			@RequestParam("gameprice") Double gameprice,
 			@RequestParam("gamediscount") Double gamediscount,
+			@RequestParam("gamerating") String gamerating,
+			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date releasedate,
+			@RequestParam("gamepublisher") String gamepublisher, @RequestParam("gameplatforms") String gameplatforms,
+			@RequestParam("minsystemrequirements") String minsystemrequirements,
+			@RequestParam("recsystemrequirements") String recsystemrequirements,
+			@RequestParam("gamegenres") String gamegenres, @RequestParam("gametrailerurl") String gametrailerurl,
+			@RequestParam("agerating") String agerating, @RequestParam("gamefeatures") String gamefeatures,
+			@RequestParam("supportedlanguages") String supportedlanguages,
+			@RequestParam("gameachievements") String gameachievements,
+			@RequestParam("communitylinks") String communitylinks,
 			@RequestParam(value = "gameimage", required = false) MultipartFile gameimage,
 			@RequestParam(value = "video1Url", required = false) MultipartFile video1Url,
 			@RequestParam(value = "video2Url", required = false) MultipartFile video2Url,
@@ -62,6 +86,19 @@ public class AdminaddgameController {
 		updatedAdmin.setGamedescription(gamedescription);
 		updatedAdmin.setGameprice(gameprice);
 		updatedAdmin.setGamediscount(gamediscount);
+		updatedAdmin.setAgerating(agerating);
+		updatedAdmin.setReleasedate(releasedate);
+		updatedAdmin.setGamepublisher(gamepublisher);
+		updatedAdmin.setGameplatforms(gameplatforms);
+		updatedAdmin.setMinsystemrequirements(minsystemrequirements);
+		updatedAdmin.setRecsystemrequirements(recsystemrequirements);
+		updatedAdmin.setGamegenres(gamegenres);
+		updatedAdmin.setGamerating(gamerating);
+		updatedAdmin.setGametrailerurl(gametrailerurl);
+		updatedAdmin.setGamefeatures(gamefeatures);
+		updatedAdmin.setSupportedlanguages(supportedlanguages);
+		updatedAdmin.setGameachievements(gameachievements);
+		updatedAdmin.setCommunitylinks(communitylinks);
 
 		// Call the service method to handle the update
 		try {

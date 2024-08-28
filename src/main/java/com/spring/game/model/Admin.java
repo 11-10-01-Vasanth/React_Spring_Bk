@@ -33,6 +33,45 @@ public class Admin {
     @Column(name = "gamecategory")
     private String gamecategory;
 
+    @Column(name = "gamerating")
+    private String gamerating;
+
+    @Column(name = "releasedate")
+    private Date releasedate; 
+
+    @Column(name = "gamepublisher")
+    private String gamepublisher;
+
+    @Column(name = "gameplatforms")
+    private String gameplatforms;
+
+    @Column(name = "minsystemrequirements", columnDefinition = "text")
+    private String minsystemrequirements;
+
+    @Column(name = "recsystemrequirements", columnDefinition = "text")
+    private String recsystemrequirements;  
+
+    @Column(name = "gamegenres")
+    private String gamegenres;
+
+    @Column(name = "gametrailerurl")
+    private String gametrailerurl; 
+
+    @Column(name = "agerating")
+    private String agerating; 
+
+    @Column(name = "gamefeatures", columnDefinition = "text")
+    private String gamefeatures; 
+
+    @Column(name = "supportedlanguages")
+    private String supportedlanguages; 
+
+    @Column(name = "gameachievements", columnDefinition = "text")
+    private String gameachievements;
+
+    @Column(name = "communitylinks")
+    private String communitylinks; 
+
     @Column(name = "createdAt")
     private Date createdAt;
 
@@ -125,4 +164,110 @@ public class Admin {
     public void setTrending(Trending trending) {
         this.trending = trending;
     }
+
+    public String getGamerating() {
+        return gamerating;
+    }
+
+    public void setGamerating(String gamerating) {
+        this.gamerating = gamerating;
+    }
+
+    public Date getReleasedate() {
+        return releasedate;
+    }
+
+    public void setReleasedate(Date releasedate) {
+        this.releasedate = releasedate;
+    }
+
+    public String getGamepublisher() {
+        return gamepublisher;
+    }
+
+    public void setGamepublisher(String gamepublisher) {
+        this.gamepublisher = gamepublisher;
+    }
+
+    public String getGameplatforms() {
+        return gameplatforms;
+    }
+
+    public void setGameplatforms(String gameplatforms) {
+        this.gameplatforms = gameplatforms;
+    }
+
+    public String getMinsystemrequirements() {
+        return minsystemrequirements;
+    }
+
+    public void setMinsystemrequirements(String minsystemrequirements) {
+        this.minsystemrequirements = minsystemrequirements;
+    }
+
+    public String getRecsystemrequirements() {
+        return recsystemrequirements;
+    }
+
+    public void setRecsystemrequirements(String recsystemrequirements) {
+        this.recsystemrequirements = recsystemrequirements;
+    }
+
+    public String getGamegenres() {
+        return gamegenres;
+    }
+
+    public void setGamegenres(String gamegenres) {
+        this.gamegenres = gamegenres;
+    }
+
+    public String getGametrailerurl() {
+        return gametrailerurl;
+    }
+
+    public void setGametrailerurl(String gametrailerurl) {
+        this.gametrailerurl = gametrailerurl;
+    }
+
+    public String getAgerating() {
+        return agerating;
+    }
+
+    public void setAgerating(String agerating) {
+        this.agerating = agerating;
+    }
+
+    public String getGamefeatures() {
+        return gamefeatures;
+    }
+
+    public void setGamefeatures(String gamefeatures) {
+        this.gamefeatures = gamefeatures;
+    }
+
+    public String getSupportedlanguages() {
+        return supportedlanguages;
+    }
+
+    public void setSupportedlanguages(String supportedlanguages) {
+        this.supportedlanguages = supportedlanguages;
+    }
+
+    public String getGameachievements() {
+        return gameachievements;
+    }
+
+    public void setGameachievements(String gameachievements) {
+        this.gameachievements = gameachievements;
+    }
+
+    public String getCommunitylinks() {
+        return communitylinks;
+    }
+
+    public void setCommunitylinks(String communitylinks) {
+        this.communitylinks = communitylinks;
+    }
+
+    
 }
