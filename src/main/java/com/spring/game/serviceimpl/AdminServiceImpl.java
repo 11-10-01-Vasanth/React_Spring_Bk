@@ -32,8 +32,12 @@ public class AdminServiceImpl implements AdminService {
 	private AdminRepo adminRepo;
 
 	@Override
-	public ResponseEntity<String> addgames(String gametitle, String gamedescription, Double gameprice, Double gamediscount,
-	String gamecategory, String gamerating, Date releasedate, String gamepublisher, String gameplatforms, String minsystemrequirements, String recsystemrequirements, String gamegenres, String gametrailerurl, String agerating, String gamefeatures, String supportedlanguages, String gameachievements, String communitylinks, MultipartFile gameimage) {
+	public ResponseEntity<String> addgames(String gametitle, String gamedescription, Double gameprice,
+			Double gamediscount,
+			String gamecategory, String gamerating, Date releasedate, String gamepublisher, String gameplatforms,
+			String minsystemrequirements, String recsystemrequirements, String gamegenres, String gametrailerurl,
+			String agerating, String gamefeatures, String supportedlanguages, String gameachievements,
+			String communitylinks, MultipartFile gameimage) {
 		if (gameimage.isEmpty()) {
 			return new ResponseEntity<>("Please select a file!", HttpStatus.OK);
 		}
@@ -194,6 +198,22 @@ public class AdminServiceImpl implements AdminService {
 		}
 	}
 
+	// private String saveFile(MultipartFile file) throws IOException {
+	// 	UUID uuid = UUID.randomUUID();
+	// 	String uploadsLocation = "/home/kernelogy/Vasanth/React_Spring_Bk/src/main/resources/resources/uploads/";
+	// 	// Replace spaces with underscores
+	// 	String originalFileName = file.getOriginalFilename().replace(" ", "_");
+	// 	String fileName = uuid + "_" + originalFileName;
+	// 	Path path = Paths.get(uploadsLocation + fileName);
+
+	// 	if (!Files.exists(path.getParent())) {
+	// 		Files.createDirectories(path.getParent());
+	// 	}
+
+	// 	Files.write(path, file.getBytes());
+	// 	return fileName;
+	// }
+
 	private String saveFile(MultipartFile file) throws IOException {
 		UUID uuid = UUID.randomUUID();
 		String uploadsLocation = "/home/kernelogy/Vasanth/React_Spring_Bk/src/main/resources/resources/uploads/";
@@ -207,5 +227,6 @@ public class AdminServiceImpl implements AdminService {
 		Files.write(path, file.getBytes());
 		return fileName;
 	}
+
 
 }
