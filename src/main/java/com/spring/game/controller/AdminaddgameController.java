@@ -77,7 +77,26 @@ public class AdminaddgameController {
 			@RequestParam(value = "video1Url", required = false) MultipartFile video1Url,
 			@RequestParam(value = "video2Url", required = false) MultipartFile video2Url,
 			@RequestParam(value = "video3Url", required = false) MultipartFile video3Url,
-			@RequestParam(value = "video4Url", required = false) MultipartFile video4Url) {
+			@RequestParam(value = "video4Url", required = false) MultipartFile video4Url,
+			@RequestParam(value = "video4Url", required = false) MultipartFile gametrailer,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid1,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid2,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid3,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid4,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid5,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid6,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid7,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid8,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid9,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid10,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid11,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid12,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid13,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid14,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid15,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid16,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid17,
+			@RequestParam(value = "video4Url", required = false) MultipartFile img_vid18) {
 
 		// Create an Admin object with the updated information
 		Admin updatedAdmin = new Admin();
@@ -103,7 +122,9 @@ public class AdminaddgameController {
 		// Call the service method to handle the update
 		try {
 			ResponseEntity<?> response = adminService.updategames(gameid, updatedAdmin, gameimage, video1Url, video2Url,
-					video3Url, video4Url);
+					video3Url, video4Url, gametrailer, img_vid1, img_vid2, img_vid3, img_vid4, img_vid18, img_vid18,
+					img_vid18, img_vid18, img_vid18, img_vid18, img_vid18, img_vid18, img_vid18, img_vid18, img_vid18,
+					img_vid18, img_vid18, img_vid18);
 			return response;
 		} catch (IOException e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
