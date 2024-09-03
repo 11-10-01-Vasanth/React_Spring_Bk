@@ -28,16 +28,16 @@ import com.spring.game.service.AdminService;
 @Service
 public class AdminServiceImpl implements AdminService {
 
-	private static final String uploadDir = null;
 	@Autowired
 	private AdminRepo adminRepo;
 
 	@Override
 	public ResponseEntity<String> addgames(String gametitle, String gamedescription, Double gameprice,
 			Double gamediscount,
-			String gamecategory, String gamerating, Date releasedate, String gamepublisher, String gameplatforms,
-			String minsystemrequirements, String recsystemrequirements, String gamegenres, String gametrailerurl,
-			String agerating, String gamefeatures, String supportedlanguages, String gameachievements,
+			String gamecategory, String agerating, Date releasedate, String gamepublisher, String gameplatforms,
+			String minsystemrequirements, String recsystemrequirements, String gamegenres, String gamerating,
+			String gametrailerurl,
+			String gamefeatures, String supportedlanguages, String gameachievements,
 			String communitylinks, MultipartFile gameimage) {
 		if (gameimage.isEmpty()) {
 			return new ResponseEntity<>("Please select a file!", HttpStatus.OK);

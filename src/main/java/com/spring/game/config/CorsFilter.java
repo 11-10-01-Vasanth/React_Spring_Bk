@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.stereotype.Component;
 
 import jakarta.servlet.Filter;
@@ -17,6 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 @Configuration
+
 @Order(Ordered.HIGHEST_PRECEDENCE)	
 public class CorsFilter implements Filter {
 
