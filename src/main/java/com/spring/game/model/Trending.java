@@ -287,5 +287,4 @@ public class Trending {
         this.img_vid18 = img_vid18;
     }
 
-    
 }
