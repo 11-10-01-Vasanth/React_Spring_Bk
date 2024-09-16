@@ -111,6 +111,7 @@ public class AdminaddgameController {
 		updatedAdmin.setMinsystemrequirements(minsystemrequirements);
 		updatedAdmin.setRecsystemrequirements(recsystemrequirements);
 		updatedAdmin.setGamegenres(gamegenres);
+		updatedAdmin.setGametrailerurl(gametrailerurl);
 		updatedAdmin.setGamerating(gamerating);
 		updatedAdmin.setGamefeatures(gamefeatures);
 		updatedAdmin.setSupportedlanguages(supportedlanguages);
@@ -120,9 +121,9 @@ public class AdminaddgameController {
 		// Call the service method to handle the update
 		try {
 			ResponseEntity<?> response = adminService.updategames(gameid, updatedAdmin, gameimage, video1Url, video2Url,
-					video3Url, video4Url, img_vid1, img_vid2, img_vid3, img_vid4, img_vid18, img_vid18,
-					img_vid18, img_vid18, img_vid18, img_vid18, img_vid18, img_vid18, img_vid18, img_vid18, img_vid18,
-					img_vid18, img_vid18, img_vid18);
+					video3Url, video4Url, img_vid1, img_vid2, img_vid3, img_vid4, img_vid5, img_vid6,
+					img_vid7, img_vid8, img_vid9, img_vid10, img_vid11, img_vid12, img_vid13, img_vid14, img_vid15,
+					img_vid16, img_vid17, img_vid18);
 			return response;
 		} catch (IOException e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

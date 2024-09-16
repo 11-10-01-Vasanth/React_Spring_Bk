@@ -22,7 +22,7 @@ public class Admin {
     private String gamedescription;
 
     @Column(name = "gameprice")
-    private Double gameprice;
+    private Double gameprice; 
 
     @Column(name = "gamediscount")
     private Double gamediscount;
