@@ -79,8 +79,14 @@ public class AdminaddgameController {
 			@RequestParam(value = "video3Url", required = false) MultipartFile video3Url,
 			@RequestParam(value = "video4Url", required = false) MultipartFile video4Url,
 			@RequestParam(value = "img_vid1", required = false) MultipartFile img_vid1,
+			@RequestParam("heading1") String heading1,
+			@RequestParam("descp1") String descp1,
 			@RequestParam(value = "img_vid2", required = false) MultipartFile img_vid2,
+			@RequestParam("heading2") String heading2,
+			@RequestParam("descp2") String descp2,
 			@RequestParam(value = "img_vid3", required = false) MultipartFile img_vid3,
+			@RequestParam("heading3") String heading3,
+			@RequestParam("descp3") String descp3,
 			@RequestParam(value = "img_vid4", required = false) MultipartFile img_vid4,
 			@RequestParam(value = "img_vid5", required = false) MultipartFile img_vid5,
 			@RequestParam(value = "img_vid6", required = false) MultipartFile img_vid6,
@@ -121,7 +127,8 @@ public class AdminaddgameController {
 		// Call the service method to handle the update
 		try {
 			ResponseEntity<?> response = adminService.updategames(gameid, updatedAdmin, gameimage, video1Url, video2Url,
-					video3Url, video4Url, img_vid1, img_vid2, img_vid3, img_vid4, img_vid5, img_vid6,
+					video3Url, video4Url, img_vid1, heading1, descp1, img_vid2, heading2, descp2, img_vid3, heading3, descp3, img_vid4, img_vid5,
+					img_vid6,
 					img_vid7, img_vid8, img_vid9, img_vid10, img_vid11, img_vid12, img_vid13, img_vid14, img_vid15,
 					img_vid16, img_vid17, img_vid18);
 			return response;

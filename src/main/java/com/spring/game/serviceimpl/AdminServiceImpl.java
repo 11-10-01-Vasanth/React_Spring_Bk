@@ -132,7 +132,9 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public ResponseEntity<?> updategames(UUID gameid, Admin updatedAdmin, MultipartFile gameimage,
 			MultipartFile video1Url, MultipartFile video2Url, MultipartFile video3Url, MultipartFile video4Url,
-			MultipartFile img_vid1, MultipartFile img_vid2, MultipartFile img_vid3,
+			MultipartFile img_vid1, String heading1, String descp1, MultipartFile img_vid2, String heading2,
+			String descp2, MultipartFile img_vid3,
+			String heading3, String descp3,
 			MultipartFile img_vid4, MultipartFile img_vid5, MultipartFile img_vid6, MultipartFile img_vid7,
 			MultipartFile img_vid8, MultipartFile img_vid9, MultipartFile img_vid10, MultipartFile img_vid11,
 			MultipartFile img_vid12, MultipartFile img_vid13, MultipartFile img_vid14, MultipartFile img_vid15,
@@ -156,7 +158,9 @@ public class AdminServiceImpl implements AdminService {
 
 			// Ensure Trending entity exists and update files
 			updateTrendingFields(entity, video1Url, video2Url, video3Url, video4Url,
-					img_vid1, img_vid2, img_vid3, img_vid4, img_vid5, img_vid6, img_vid7, img_vid8,
+					img_vid1, heading1, descp1, img_vid2, heading2, descp2, img_vid3, heading3, descp3, img_vid4,
+					img_vid5, img_vid6, img_vid7,
+					img_vid8,
 					img_vid9, img_vid10, img_vid11, img_vid12, img_vid13, img_vid14, img_vid15,
 					img_vid16, img_vid17, img_vid18);
 
@@ -229,8 +233,11 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	private void updateTrendingFields(Admin entity, MultipartFile video1Url, MultipartFile video2Url,
-			MultipartFile video3Url, MultipartFile video4Url, MultipartFile img_vid1,
-			MultipartFile img_vid2, MultipartFile img_vid3, MultipartFile img_vid4, MultipartFile img_vid5,
+			MultipartFile video3Url, MultipartFile video4Url, MultipartFile img_vid1, String heading1, String descp1,
+			MultipartFile img_vid2, String heading2,
+			String descp2, MultipartFile img_vid3,
+			String heading3, String descp3, MultipartFile img_vid4,
+			MultipartFile img_vid5,
 			MultipartFile img_vid6, MultipartFile img_vid7, MultipartFile img_vid8, MultipartFile img_vid9,
 			MultipartFile img_vid10, MultipartFile img_vid11, MultipartFile img_vid12, MultipartFile img_vid13,
 			MultipartFile img_vid14, MultipartFile img_vid15, MultipartFile img_vid16, MultipartFile img_vid17,
@@ -267,14 +274,38 @@ public class AdminServiceImpl implements AdminService {
 			trending.setImg_vid1(newFilePath);
 		}
 
+		if (heading1 != null) {
+			trending.setHeading1(heading1);
+		}
+
+		if (descp1 != null) {
+			trending.setDescp1(descp1);
+		}
+
 		if (img_vid2 != null && !img_vid2.isEmpty()) {
 			String newFilePath = saveFile(img_vid2);
 			trending.setImg_vid2(newFilePath);
 		}
 
+		if (heading2 != null) {
+			trending.setHeading2(heading2);
+		}
+
+		if (descp2 != null) {
+			trending.setDescp2(descp2);
+		}
+
 		if (img_vid3 != null && !img_vid3.isEmpty()) {
 			String newFilePath = saveFile(img_vid3);
 			trending.setImg_vid3(newFilePath);
+		}
+
+		if (heading3 != null) {
+			trending.setHeading3(heading3);
+		}
+
+		if (descp3 != null) {
+			trending.setDescp3(descp3);
 		}
 
 		if (img_vid4 != null && !img_vid4.isEmpty()) {

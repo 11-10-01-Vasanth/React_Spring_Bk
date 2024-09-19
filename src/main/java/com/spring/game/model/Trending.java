@@ -30,11 +30,29 @@ public class Trending {
     @Column(name = "img_vid1")
     private String img_vid1;
 
+    @Column(name = "heading1")
+    private String heading1;
+
+    @Column(name = "descp1")
+    private String descp1;
+
     @Column(name = "img_vid2")
     private String img_vid2;
 
+    @Column(name = "heading2")
+    private String heading2;
+
+    @Column(name = "descp2")
+    private String descp2;
+
     @Column(name = "img_vid3")
     private String img_vid3;
+
+    @Column(name = "heading3")
+    private String heading3;
+
+    @Column(name = "descp3")
+    private String descp3;
 
     @Column(name = "img_vid4")
     private String img_vid4;
@@ -285,6 +303,54 @@ public class Trending {
 
     public void setImg_vid18(String img_vid18) {
         this.img_vid18 = img_vid18;
+    }
+
+    public String getDescp1() {
+        return descp1;
+    }
+
+    public void setDescp1(String descp1) {
+        this.descp1 = descp1;
+    }
+
+    public String getDescp2() {
+        return descp2;
+    }
+
+    public void setDescp2(String descp2) {
+        this.descp2 = descp2;
+    }
+
+    public String getDescp3() {
+        return descp3;
+    }
+
+    public void setDescp3(String descp3) {
+        this.descp3 = descp3;
+    }
+
+    public String getHeading1() {
+        return heading1;
+    }
+
+    public void setHeading1(String heading1) {
+        this.heading1 = heading1;
+    }
+
+    public String getHeading2() {
+        return heading2;
+    }
+
+    public void setHeading2(String heading2) {
+        this.heading2 = heading2;
+    }
+
+    public String getHeading3() {
+        return heading3;
+    }
+
+    public void setHeading3(String heading3) {
+        this.heading3 = heading3;
     }
 
 }
